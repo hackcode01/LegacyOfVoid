@@ -17,15 +17,6 @@ namespace Engine {
         #define LOG_TRACE_ENABLED 0
     #endif
 
-    enum class LogLevel {
-        LOG_LEVEL_FATAL,
-        LOG_LEVEL_ERROR,
-        LOG_LEVEL_WARNING,
-        LOG_LEVEL_INFO,
-        LOG_LEVEL_DEBUG,
-        LOG_LEVEL_TRACE
-    };
-
     enum class TypeErrors {
         FAILED_CREATE_GAME,
         FAILED_ASSIGNED_FUNCTION_GAME,
@@ -33,43 +24,43 @@ namespace Engine {
         FAILED_APPLICATION_SHUTDOWN_GRACEFULLY
     };
 
-    /* Logs a fatal-level message. */
+    /** Logs a fatal-level message. */
     #define ENGINE_LOG_FATAL(...) spdlog::error(__VA_ARGS__);
 
     #ifndef ENGINE_LOG_ERROR
-        /* Logs a error-level message. */
+        /** Logs a error-level message. */
         #define ENGINE_LOG_ERROR(...) spdlog::error(__VA_ARGS__);
     #endif
 
     #if LOG_WARNING_ENABLED == 1
-        /* Logs a warning-level message. */
+        /** Logs a warning-level message. */
         #define ENGINE_LOG_WARNING(...) spdlog::warn(__VA_ARGS__);
     #else
-        /* Does nothing when LOG_WARN_ENABLED != 1 */
+        /** Does nothing when LOG_WARN_ENABLED != 1 */
         #define ENGINE_LOG_WARNING(...)
     #endif
 
     #if LOG_INFO_ENABLED == 1
-        /* Logs a info-level message. */
+        /** Logs a info-level message. */
         #define ENGINE_LOG_INFO(...) spdlog::info(__VA_ARGS__);
     #else
-        /* Does nothing when LOG_INFO_ENABLED != 1 */
+        /** Does nothing when LOG_INFO_ENABLED != 1 */
         #define ENGINE_LOG_INFO(...)
     #endif
 
     #if LOG_DEBUG_ENABLED == 1
-        /* Logs a debug-level message. */
+        /** Logs a debug-level message. */
         #define ENGINE_LOG_DEBUG(...) spdlog::debug(__VA_ARGS__);
     #else
-        /* Does nothing when LOG_DEBUG_ENABLED != 1 */
+        /** Does nothing when LOG_DEBUG_ENABLED != 1 */
         #define ENGINE_LOG_DEBUG(...)
     #endif
 
     #if LOG_TRACE_ENABLED == 1
-        /* Logs a trace-level message. */
+        /** Logs a trace-level message. */
         #define ENGINE_LOG_TRACE(...) spdlog::trace(__VA_ARGS__);
     #else
-        /* Does nothing when LOG_TRACE_ENABLED != 1 */
+        /** Does nothing when LOG_TRACE_ENABLED != 1 */
         #define ENGINE_LOG_TRACE(...)
     #endif
 }

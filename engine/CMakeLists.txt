@@ -6,6 +6,8 @@ project(${PROJECT_NAME})
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(CMAKE_CXX_COMPILER clang++)
+
 include(FetchContent)
 
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
@@ -20,6 +22,7 @@ set(INCLUDE_FILES
     include/engine.hpp
     include/defines.hpp
     include/logger.hpp
+    include/asserts.hpp
 )
 
 set(SOURCE_FILES
