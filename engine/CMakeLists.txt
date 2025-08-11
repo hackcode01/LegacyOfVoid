@@ -14,17 +14,24 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 find_package(Vulkan REQUIRED COMPONENTS glslc)
+find_package(spdlog CONFIG REQUIRED)
 
-set(FILES
+set(INCLUDE_FILES
     include/engine.hpp
+    include/defines.hpp
+    include/logger.hpp
+)
+
+set(SOURCE_FILES
     src/engine.cpp
 )
 
-add_library(${PROJECT_NAME} STATIC ${FILES})
+add_library(${PROJECT_NAME} STATIC ${INCLUDE_FILES} ${SOURCE_FILES})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     glfw
     Vulkan::Vulkan
+    spdlog::spdlog
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

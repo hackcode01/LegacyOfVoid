@@ -3,6 +3,8 @@
 
 #include <cstdint>
 
-int_fast32_t sum(int_fast32_t a, int_fast32_t b);
+namespace Engine {
+    int_fast32_t sum(int_fast32_t a, int_fast32_t b);
+}
 
 #endif

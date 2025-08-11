@@ -1,9 +1,12 @@
 #include "../../engine/include/engine.hpp"
+#include "../../engine/include/logger.hpp"
 
 #include <iostream>
 
 int main() {
-    std::cout << "Sum = " << sum(100, 200) << '\n';
+    ENGINE_LOG_INFO("Program main")
+
+    std::cout << "Sum = " << Engine::sum(100, 200) << '\n';
 
     return 0;
 }

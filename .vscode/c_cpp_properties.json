@@ -8,8 +8,11 @@
             "defines": [],
             "compilerPath": "/usr/bin/clang++",
             "cStandard": "c23",
-            "cppStandard": "c++20",
-            "intelliSenseMode": "linux-clang-x64"
+            "cppStandard": "c++17",
+            "intelliSenseMode": "linux-clang-x64",
+            "compilerArgs": [
+                "-D_DEDUG"
+            ]
         }
     ],
     "version": 4
