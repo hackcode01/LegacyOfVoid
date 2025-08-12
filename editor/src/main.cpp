@@ -4,7 +4,7 @@
 #include <iostream>
 
 int main() {
-    ENGINE_LOG_INFO("Program main")
+    Engine::printInfo();
 
     std::cout << "Sum = " << Engine::sum(100, 200) << '\n';
 

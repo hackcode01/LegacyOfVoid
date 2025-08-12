@@ -3,7 +3,7 @@
 
 #include "defines.hpp"
 
-#include <spdlog/spdlog.h>
+#include "spdlog/spdlog.h"
 
 namespace Engine {
     #define LOG_WARNING_ENABLED 1
