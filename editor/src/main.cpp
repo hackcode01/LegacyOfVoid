@@ -1,12 +1,14 @@
-#include "../../engine/include/engine.hpp"
-#include "../../engine/include/logger.hpp"
+#include "../../engine/include/Logger.hpp"
+
+#include "../../engine/include/core/application/Application.hpp"
 
 #include <iostream>
 
 int main() {
-    Engine::printInfo();
+    ENGINE_LOG_INFO("Main program")
 
-    std::cout << "Sum = " << Engine::sum(100, 200) << '\n';
+    Engine::Application app{};
+    app.run();
 
     return 0;
 }

@@ -5,7 +5,9 @@ project(${PROJECT_NAME})
 
 add_executable(${PROJECT_NAME} src/main.cpp)
 
-target_link_libraries(${PROJECT_NAME} Engine spdlog)
+target_link_libraries(${PROJECT_NAME} Engine spdlog glfw)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ../vulkan_headers)
 
 set_target_properties(${PROJECT_NAME}
     PROPERTIES RUNTIME_OUTPUT_DIRECTORY

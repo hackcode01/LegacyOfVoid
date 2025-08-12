@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
 
 set(ENGINE_PROJECT_NAME Engine)
+project(${ENGINE_PROJECT_NAME})
 
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
@@ -12,26 +13,22 @@ find_package(glad CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
 set(INCLUDE_FILES
-    include/engine.hpp
-    include/defines.hpp
-    include/logger.hpp
-    include/asserts.hpp
+    include/Defines.hpp
+    include/Logger.hpp
+    include/Asserts.hpp
+    include/core/application/Application.hpp
 )
 
-set(SRC_FILES
-    src/engine.cpp
-)
-
-set(ENGINE_ALL_SOURCES
-    ${INCLUDE_FILES} ${SRC_FILES}
+set(SOURCE_FILES
+    src/core/application/Application.cpp
 )
 
 add_library(${ENGINE_PROJECT_NAME} STATIC
-    ${ENGINE_ALL_SOURCES}
+    ${INCLUDE_FILES} ${SOURCE_FILES}
 )
 
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES
-    ${ENGINE_ALL_SOURCES}
+    ${INCLUDE_FILES} ${SOURCE_FILES}
 )
 
 target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC includes)
@@ -53,6 +50,8 @@ target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE
 target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE
     $<BUILD_INTERFACE:${glm_SOURCE_DIR}>
 )
+
+target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC ../vulkan_headers)
 
 target_compile_definitions(${ENGINE_PROJECT_NAME} PRIVATE
     GLFW_INCLUDE_NONE

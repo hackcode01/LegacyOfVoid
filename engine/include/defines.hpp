@@ -20,7 +20,6 @@ namespace Engine {
 
     /** Boolean types. */
     typedef int b32;
-    typedef char b8;
 
     /** Properly define static assertions. */
     #if defined(__clang__) || defined(__gcc__)
@@ -42,9 +41,6 @@ namespace Engine {
 
     STATIC_ASSERT(sizeof(f32) == 4, "Expected u8 to be 1 byte.");
     STATIC_ASSERT(sizeof(f64) == 8, "Expected u8 to be 1 byte.");
-
-    #define TRUE 1
-    #define FALSE 0
 
     /** Platform detection. */
     #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
