@@ -1,10 +1,10 @@
 #ifndef __ENGINE_APPLICATION_HPP__
-#define __ENGINE_APPLICATION_HPP
+#define __ENGINE_APPLICATION_HPP__
 
 #include <iostream>
 #include <stdexcept>
 #include <vector>
-#include <cstring>
+#include <string>
 #include <cstdlib>
 #include <memory>
 #include <algorithm>
@@ -15,13 +15,13 @@
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
 
-namespace Engine
-{
+namespace Engine {
     constexpr uint32_t WIDTH = 800;
     constexpr uint32_t HEIGHT = 600;
 
     const std::vector validationLayers = {
-        "VK_LAYER_KHRONOS_validation"};
+        "VK_LAYER_KHRONOS_validation"
+    };
 
 #ifdef NDEBUG
     constexpr bool enableValidationLayers = false;
@@ -31,7 +31,7 @@ namespace Engine
 
     class Application {
     public:
-        Application() = default;
+        Application() {}
 
         void run() {
             initWindow();
@@ -44,11 +44,22 @@ namespace Engine
         std::string engineName{"LegacyOfVoidEngine"};
 
     private:
-        GLFWwindow *window = nullptr;
+        GLFWwindow *m_window = nullptr;
 
-        vk::raii::Context context;
-        vk::raii::Instance instance = nullptr;
-        vk::raii::DebugUtilsMessengerEXT debugMessenger = nullptr;
+        vk::raii::Context m_context;
+        vk::raii::Instance m_instance = nullptr;
+        vk::raii::DebugUtilsMessengerEXT m_debugMessenger = nullptr;
+        vk::raii::SurfaceKHR m_surface = nullptr;
+        vk::raii::PhysicalDevice m_physicalDevice = nullptr;
+        vk::raii::Device m_device = nullptr;
+        vk::raii::Queue m_graphicsQueue = nullptr;
+
+        std::vector<const char*> m_requiredDeviceExtension = {
+            vk::KHRSwapchainExtensionName,
+            vk::KHRSpirv14ExtensionName,
+            vk::KHRSynchronization2ExtensionName,
+            vk::KHRCreateRenderpass2ExtensionName
+        };
 
         void initWindow() {
             glfwInit();
@@ -56,22 +67,25 @@ namespace Engine
             glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
             glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-            window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
+            m_window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
         }
 
         void initVulkan() {
             createInstance();
             setupDebugMessenger();
+            createSurface();
+            pickPhysicalDevice();
+            createLogicalDevice();
         }
 
         void mainLoop() {
-            while (!glfwWindowShouldClose(window)) {
+            while (!glfwWindowShouldClose(m_window)) {
                 glfwPollEvents();
             }
         }
 
         void cleanup() {
-            glfwDestroyWindow(window);
+            glfwDestroyWindow(m_window);
 
             glfwTerminate();
         }
@@ -79,6 +93,12 @@ namespace Engine
         void createInstance();
 
         void setupDebugMessenger();
+
+        void createSurface();
+
+        void pickPhysicalDevice();
+
+        void createLogicalDevice();
 
         std::vector<const char *> getRequiredExtensions();
 

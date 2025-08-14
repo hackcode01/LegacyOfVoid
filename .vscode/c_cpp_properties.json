@@ -19,8 +19,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/external/spdlog/include/**",
-                "${workspaceFolder}/external/spdlog/include",
-                "C:/VulkanSDK/1.4.321.1/Include/**"
+                "${workspaceFolder}/external/Vulkan-Headers/include/**"
             ],
             "defines": [
                 "_DEBUG",
