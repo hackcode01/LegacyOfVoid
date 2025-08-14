@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <memory>
 #include <algorithm>
+#include <limits>
 
 #include <vulkan/vulkan_raii.hpp>
 #include <vulkan/vk_platform.h>
@@ -54,6 +55,12 @@ namespace Engine {
         vk::raii::Device m_device = nullptr;
         vk::raii::Queue m_graphicsQueue = nullptr;
 
+        vk::raii::SwapchainKHR m_swapChain = nullptr;
+        std::vector<vk::Image> m_swapChainImages;
+        vk::Format m_swapChainImageFormat = vk::Format::eUndefined;
+        vk::Extent2D m_swapChainExtent;
+        std::vector<vk::raii::ImageView> m_swapChainImageViews;
+
         std::vector<const char*> m_requiredDeviceExtension = {
             vk::KHRSwapchainExtensionName,
             vk::KHRSpirv14ExtensionName,
@@ -76,6 +83,7 @@ namespace Engine {
             createSurface();
             pickPhysicalDevice();
             createLogicalDevice();
+            createSwapChain();
         }
 
         void mainLoop() {
@@ -99,6 +107,14 @@ namespace Engine {
         void pickPhysicalDevice();
 
         void createLogicalDevice();
+
+        void createSwapChain();
+
+        static vk::Format chooseSwapSurfaceFormat(const std::vector<vk::SurfaceFormatKHR>& availableFormats);
+
+        static vk::PresentModeKHR chooseSwapPresentMode(const std::vector<vk::PresentModeKHR>& availablePresentModes);
+
+        vk::Extent2D chooseSwapExtent(const vk::SurfaceCapabilitiesKHR& capabilities);
 
         std::vector<const char *> getRequiredExtensions();
 
