@@ -109,14 +109,6 @@ namespace Engine {
         std::vector<vk::QueueFamilyProperties> queueFamilyProperties = m_physicalDevice.getQueueFamilyProperties();
 
         uint32_t queueIndex = ~0;
-        /* auto graphicsQueueFamilyProperty = std::find_if(
-            queueFamilyProperties.begin(), queueFamilyProperties.end(),
-            [](auto const& queueFamily) {
-                return (queueFamily.queueFlags & vk::QueueFlagBits::eGraphics) != static_cast<vk::QueueFlags>(0);
-            });
-        assert(graphicsQueueFamilyProperty != queueFamilyProperties.end() && "No graphics queue family found!");
-        auto graphicsIndex = static_cast<uint32_t>(std::distance(queueFamilyProperties.begin(), graphicsQueueFamilyProperty));
-        */
 
         for (uint32_t familyIndex = 0; familyIndex < queueFamilyProperties.size(); ++familyIndex) {
             if ((queueFamilyProperties[familyIndex].queueFlags & vk::QueueFlagBits::eGraphics) &&
