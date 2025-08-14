@@ -19,7 +19,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/external/spdlog/include/**",
-                "${workspaceFolder}/external/spdlog/include"
+                "${workspaceFolder}/external/spdlog/include",
+                "C:/VulkanSDK/1.4.321.1/Include/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -29,7 +30,7 @@
             "cStandard": "c23",
             "cppStandard": "c++23",
             "intelliSenseMode": "windows-clang-x64",
-            "compilerPath": "D:/LLVM/bin/clang++.exe"
+            "compilerPath": "C:/LLVM/bin/clang++.exe"
         }
     ],
     "version": 4

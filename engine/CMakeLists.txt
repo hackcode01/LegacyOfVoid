@@ -41,6 +41,8 @@ target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glfw)
 add_subdirectory(../external/spdlog ${CMAKE_CURRENT_BINARY_DIR}/spdlog)
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE spdlog)
 
+target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC ../external/Vulkan-Headers/include)
+
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE
     Vulkan::Vulkan
     glm::glm
@@ -50,8 +52,6 @@ target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE
 target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE
     $<BUILD_INTERFACE:${glm_SOURCE_DIR}>
 )
-
-target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC ../vulkan_headers)
 
 target_compile_definitions(${ENGINE_PROJECT_NAME} PRIVATE
     GLFW_INCLUDE_NONE
