@@ -9,13 +9,12 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 find_package(Vulkan REQUIRED COMPONENTS glslc)
-find_package(glad CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
 set(INCLUDE_FILES
-    include/Defines.hpp
-    include/Logger.hpp
-    include/Asserts.hpp
+    include/defines.hpp
+    include/logger.hpp
+    include/asserts.hpp
     include/core/application/Application.hpp
 )
 
@@ -46,7 +45,6 @@ target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC ../external/Vulkan-Head
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE
     Vulkan::Vulkan
     glm::glm
-    glad::glad
 )
 
 target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE

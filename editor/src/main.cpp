@@ -1,4 +1,4 @@
-#include "../../engine/include/Logger.hpp"
+#include "../../engine/include/logger.hpp"
 
 #include "../../engine/include/core/application/Application.hpp"
 
