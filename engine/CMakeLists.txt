@@ -12,9 +12,9 @@ find_package(Vulkan REQUIRED COMPONENTS glslc)
 find_package(glm CONFIG REQUIRED)
 
 set(INCLUDE_FILES
-    include/defines.hpp
-    include/logger.hpp
-    include/asserts.hpp
+    include/Defines.hpp
+    include/Logger.hpp
+    include/Asserts.hpp
     include/core/application/Application.hpp
 )
 
