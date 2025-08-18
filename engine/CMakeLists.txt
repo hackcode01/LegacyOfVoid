@@ -9,17 +9,21 @@ set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 find_package(Vulkan REQUIRED COMPONENTS glslc)
-find_package(glm CONFIG REQUIRED)
 
 set(INCLUDE_FILES
-    include/Defines.hpp
-    include/Logger.hpp
-    include/Asserts.hpp
-    include/core/application/Application.hpp
+    Include/Defines.hpp
+    Include/Logger.hpp
+    Include/Asserts.hpp
+    Include/core/Application/Application.hpp
+    Include/Core/Errors/ErrorMacros.hpp
+    Include/Core/Errors/Errors.hpp
+    Include/Core/Typedefs.hpp
 )
 
 set(SOURCE_FILES
-    src/core/application/Application.cpp
+    Src/Core/Errors/Errors.cpp
+    Src/Core/Errors/ErrorMacros.cpp
+    Src/Core/Application/Application.cpp
 )
 
 add_library(${ENGINE_PROJECT_NAME} STATIC
@@ -34,13 +38,15 @@ target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC includes)
 target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC src)
 target_compile_features(${ENGINE_PROJECT_NAME} PUBLIC cxx_std_20)
 
-add_subdirectory(../external/glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
+add_subdirectory(../External/glfw ${CMAKE_CURRENT_BINARY_DIR}/glfw)
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glfw)
 
-add_subdirectory(../external/spdlog ${CMAKE_CURRENT_BINARY_DIR}/spdlog)
+add_subdirectory(../External/spdlog ${CMAKE_CURRENT_BINARY_DIR}/spdlog)
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE spdlog)
 
-target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC ../external/Vulkan-Headers/include)
+target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC ../External/Vulkan-Headers/include)
+
+add_subdirectory(../External/glm ${CMAKE_CURRENT_BINARY_DIR}/glm)
 
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE
     Vulkan::Vulkan
