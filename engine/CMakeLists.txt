@@ -10,6 +10,9 @@ set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 find_package(Vulkan REQUIRED COMPONENTS glslc)
 
+list(APPEND CMAKE_PREFIX_PATH $ENV{IMGUI_DIR})
+find_package(imgui CONFIG REQUIRED)
+
 set(INCLUDE_FILES
     Include/Defines.hpp
     Include/Logger.hpp
@@ -18,6 +21,7 @@ set(INCLUDE_FILES
     Include/Core/Errors/ErrorMacros.hpp
     Include/Core/Errors/Errors.hpp
     Include/Core/Typedefs.hpp
+    Include/Core/Templates/SafeRefcount.hpp
 )
 
 set(SOURCE_FILES
@@ -47,10 +51,11 @@ target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE spdlog)
 target_include_directories(${ENGINE_PROJECT_NAME} PUBLIC ../External/Vulkan-Headers/include)
 
 add_subdirectory(../External/glm ${CMAKE_CURRENT_BINARY_DIR}/glm)
+target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE glm::glm)
 
 target_link_libraries(${ENGINE_PROJECT_NAME} PRIVATE
     Vulkan::Vulkan
-    glm::glm
+    imgui::imgui
 )
 
 target_include_directories(${ENGINE_PROJECT_NAME} PRIVATE
