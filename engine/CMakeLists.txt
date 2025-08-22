@@ -17,11 +17,17 @@ set(INCLUDE_FILES
     Include/Defines.hpp
     Include/Logger.hpp
     Include/Asserts.hpp
+
     Include/core/Application/Application.hpp
     Include/Core/Errors/ErrorMacros.hpp
     Include/Core/Errors/Errors.hpp
+
     Include/Core/Typedefs.hpp
     Include/Core/Templates/SafeRefcount.hpp
+    Include/Core/SystemOS/Memory.hpp
+
+    Include/Core/Variant/VariantDeepDuplicate.hpp
+    Include/Core/Variant/Array.hpp
 )
 
 set(SOURCE_FILES

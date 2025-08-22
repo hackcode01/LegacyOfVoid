@@ -5,7 +5,7 @@
  * Basic definitions and simple functions to be used everywhere.
  */
 
-static_assert(__cplusplus >= 201703L, "Minimum of C++17 required.");
+static_assert(__cplusplus <= 201703L, "Minimum of C++17 required.");
 
 #include <malloc.h>
 
